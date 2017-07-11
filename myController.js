@@ -2,66 +2,35 @@
 
  var myController = function ($scope, $controller) {
 
+ var SpecialInputProto = Object.create(HTMLElement.prototype);
 
+ SpecialInputProto.createdCallback = function () {
 
-                $scope.submit = function() {
-                     console.log($scope);
-                      // Sample options for first chart
-                      $scope.chartOptions  = EstStats("test");
-                      console.log($scope.chartOptions);
+      // getting initial value of value attribute
+      var value = this.hasAttribute('value') ?
+                  this.getAttribute('value') : '';
 
-               };
+      var template = document.querySelector('template').content;
 
-               $scope.chartOptions = EstStats("temperature");
+      // setting value property of input element
+      template.querySelector('input').value = value;
 
-                $scope.barData =
-              [{
-                name: 'research',
-                y: 56.33
-            }, {
-                name: 'topographical mapping',
-                y: 24.03
-            }, {
-                name: 'outreach VIP',
-                y: 10.38
-            }, {
-                name: 'logistic operations',
-                y: 4.77
-            }, {
-                name: 'other',
-                y: 0.91
-            }];
+      var shadowRoot = this.createShadowRoot();
+      shadowRoot.appendChild(template.cloneNode(true));
+    };
 
-                // Sample data for pie chart
-                $scope.pieData = [{
-                        name: "Fieldwork",
-                        y: 56.33
-                    }, {
-                        name: "Cruise",
-                        y: 24.03,
-                        sliced: true,
-                        selected: true
-                }]
-
-
+  SpecialInputProto.attributeChangedCallback = function (name, oldValue, newValue) {
+  if (name === 'value') {
+    this.shadowRoot.querySelector('input').value = newValue;
+  }
 };
 
-/* Estimate the diagram values */
-function EstStats(input) {
-        // Sample options for first chart
-        var chartOptions = {
-                    title: {
-                        text: input,
-                    },
-                    xAxis: {
-                        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-                    },
-                    series: [{
-                        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-                    }]
-        };
-        return chartOptions;
-};
+
+    document.registerElement('special-input', {
+        prototype: SpecialInputProto
+    });
+
+ };
+
 
  module.exports = myController;

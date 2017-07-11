@@ -2,9 +2,8 @@
 
 // @ngInject
 var angular = require('angular');
-var Bosonic = require('bosonic');
 
 
-var app = angular.module('element_test', ['Bosonic']);
+var app = angular.module('element_test', []);
 
 app.controller('myController', require('./myController'));
