@@ -1,0 +1,33 @@
+{
+  "name": "highchart_test",
+  "version": "1.0.0",
+  "description": "Add and delete elements in the DOM model",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -a vimsa.npolar.no -p 8000 -c-1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srldl/highchart_test.git"
+  },
+  "keywords": [
+    "highchart"
+  ],
+  "author": "srldl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/srldl/highchart_test/issues"
+  },
+  "homepage": "https://github.com/srldl/highchart_test#readme",
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "http-server": "^0.8.5"
+  },
+  "dependencies": {
+    "angular": "^1.5.8",
+    "bosonic-core-elements": "^1.0.0",
+    "highcharts": "^5.0.10",
+    "webcomponentsjs": "^1.0.2"
+  }
+}

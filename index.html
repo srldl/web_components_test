@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Polyfill demo</title>
+    <script src="node_modules/webcomponents.js/webcomponents.js"></script>
+  <link rel="import" href="node_modules/bosonic-core-elements">
+
+  </head>
+  <body>
+
+
+<h4>Here's a simple demo</h4>
+<b-dialog>
+    <b-dialog-content>
+        <h3>Test</h3>
+        <p>Hello world!</p>
+       <button data-dialog-dismiss>Close</button>
+    </b-dialog-content>
+</b-dialog>
+
+<button id="show-modal">Show modal</button>
+
+<script type="text/javascript">
+    window.addEventListener("WebComponentsReady", function() {
+        var showModalButton = document.getElementById('show-modal');
+        showModalButton.addEventListener('click', function() {
+            var el = document.querySelector('b-dialog');
+            console.log(el);
+            el.style.backgroundColor = "red";
+        }, false);
+    });
+</script>
+
+<script src="./bundle.js"></script>
+
+</body>
+</html>
+
+
+
